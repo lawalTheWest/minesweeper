@@ -1,0 +1,54 @@
+Minesweeper Game Algorithm:
+
+1. Initializing the Game:
+   - Create a "grid" to represent the game board.
+   - Place a certain number of mines "randomly" on the grid.
+   - Initialize all "other cells as empty".
+
+2. Display the Grid:
+
+   - "Display the grid to the player", initially "hiding the content".
+
+3. User Input:
+   - "Prompt the player to choose a cell" (be it row and column).
+
+4. Cell Selection Handling:
+   - If the selected cell is a mine, the player loses.
+   - If the selected cell is empty, reveal the cell and adjacent cells "recursively" until numbered cells are reached.(I have to implement this recursion that seemed hard in C but was studied well enough to make it work. This time is Python Time). Smiles...
+
+5. Cell Reveal Logic:
+   - If a cell is empty, reveal it and its adjacent cells recursively until numbered cells are reached. (This logic needs to be handled "recursively" too).
+   - If a cell is numbered, reveal only that cell.
+
+6. Count Adjacent Mines:
+   - For each numbered cell, count the number of mines in adjacent cells. (This will handle edge case on number of mines surrounding the revealed box.)
+   - Update the cell's content with the mine count.
+
+7. Win Condition Check:
+   - Check if all non-mine cells have been revealed. (if not the game waits for the player to complete the steps on the mine filed.)
+   - If yes, the player wins the game.
+
+8. Flagging Cells:
+   - Allowing the player to flag cells they suspect contain mines.
+   - Implementing a flag/unflag mechanism. (I will be needing more research on this as i have not fully done that for this concept)
+
+9. Game Over:
+   - If the player reveals a mine cell, end the game (player loses).
+   - If the player wins, display a victory message.
+
+
+Implementation Details:
+
+- This implementation of the game will be using the python3 programming language.
+- Utilizing functions / methods to encapsulate different parts of the algorithm (More modifications will be updated as required).
+- Organizing the codes into modules or classes for readability, portability and maintainability.
+- Implementing a graphical user interface (GUI) using a library like pygame or tkinter. (pygame is the first choice here, might change if necessary).
+- Customizing the game's appearance, features, and user interactions as needed.
+
+
+Example Repository Structure:
+- /minesweeper.py: Main game logic and execution.
+- /gui.py: GUI-related code (applicable when the game is beign upgraded)
+- /assets: Stores images, icons, or other assets.
+- /README.md: Instructions, overview, and setup guide.
+- /LICENSE: Licensing information for the project.
