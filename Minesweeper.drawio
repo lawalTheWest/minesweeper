@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-08-27T19:02:19.399Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="uBYVhuONd8GSIgHcNq3r" version="21.6.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-08-27T19:05:52.709Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="gG3zxmvJL8C7YxMIgPHm" version="21.6.6" type="github">
   <diagram name="Page-1" id="9f46799a-70d6-7492-0946-bef42562c5a5">
     <mxGraphModel dx="836" dy="493" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -217,18 +217,21 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="vN9GtpTF--qxEHcHUQb6-45" value="Count Adjacent Mines" style="swimlane;html=1;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
-          <mxGeometry x="530" y="521" width="320" height="90" as="geometry">
+          <mxGeometry x="550" y="440" width="320" height="112" as="geometry">
             <mxRectangle x="530" y="521" width="200" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vN9GtpTF--qxEHcHUQb6-53" value="+ field: type" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="vN9GtpTF--qxEHcHUQb6-45">
+        <mxCell id="vN9GtpTF--qxEHcHUQb6-53" value="+&amp;nbsp;Count the number of mines in adjacent cells" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="vN9GtpTF--qxEHcHUQb6-45">
           <mxGeometry y="26" width="320" height="26" as="geometry" />
         </mxCell>
+        <mxCell id="vN9GtpTF--qxEHcHUQb6-69" value="+&amp;nbsp;Update cell&#39;s content with mine count" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="vN9GtpTF--qxEHcHUQb6-45">
+          <mxGeometry y="52" width="320" height="26" as="geometry" />
+        </mxCell>
         <mxCell id="vN9GtpTF--qxEHcHUQb6-50" value="" style="line;html=1;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="vN9GtpTF--qxEHcHUQb6-45">
-          <mxGeometry y="52" width="320" height="8" as="geometry" />
+          <mxGeometry y="78" width="320" height="8" as="geometry" />
         </mxCell>
         <mxCell id="vN9GtpTF--qxEHcHUQb6-52" value="+ method(type): type" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="vN9GtpTF--qxEHcHUQb6-45">
-          <mxGeometry y="60" width="320" height="26" as="geometry" />
+          <mxGeometry y="86" width="320" height="26" as="geometry" />
         </mxCell>
         <mxCell id="vN9GtpTF--qxEHcHUQb6-54" value="Win Condition Check" style="swimlane;html=1;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
           <mxGeometry x="470" y="640" width="320" height="90" as="geometry">
@@ -248,7 +251,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="500" y="581" />
-              <mxPoint x="500" y="536" />
+              <mxPoint x="500" y="458" />
             </Array>
           </mxGeometry>
         </mxCell>
