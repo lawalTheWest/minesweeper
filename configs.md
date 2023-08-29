@@ -1,17 +1,17 @@
-## Minesweeper Game Configuration File
+# Minesweeper Game Configuration File
 
-# [Game Overview]
+## [Game Overview]
 
 - width = 10	; Width of the game board (number of cells)
 - height = 10	; Height of the game board (number of cells)
 - mines = 15	; Number of mines on the game board
 
-# [Graphics]
+## [Graphics]
 
 - cell_size = 40	; Size of each cell in pixels
 - font = Arial, 24	; Font for displaying text
 
-# [Colors]
+## [Colors]
 
 - background = #F0F0F0		; Background color
 - cell_hidden = #C0C0C0		; Color of hidden cells
