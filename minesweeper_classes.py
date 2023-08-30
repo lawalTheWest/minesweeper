@@ -43,8 +43,8 @@ class Board:
         '''
             progressive work
             Create a nested list with column and cell number.
-            It iterates col number times and 
-            creates a new Cell object for each iteration.
+            Iterate col number times and 
+            create a new Cell object for each iteration.
             The use of an underscore _ as the variable name
             indicates that the variable is not going to
             be used within the loop.
