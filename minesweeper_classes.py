@@ -66,8 +66,6 @@ class Board:
         # select randomly from our range
         # passing the number of mines
         pos_of_mine = random.sample(range(self.num_rows * self.num_cols), self.num_mines)
-        for row in range(self.num_rows):
-            for col in range(self.num_cols):
 
     def reveal_cell(self):
         # Reveals a cell and handles adjacent empty cells.
