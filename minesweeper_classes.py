@@ -50,6 +50,7 @@ class Board:
             be used within the loop.
         '''
 
+
         self.cells = [[cells() for _ in range(num_cols)] for _ in range(num_rows)]
         # A 2D list of Cell objects representing the game grid.
 
