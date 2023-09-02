@@ -108,6 +108,8 @@ class Game:
             Handles player moves,
             updates the board, and
             checks for game status.
+            this includes the,
+            placing flags and the steps.
         '''
     def check_win():
         '''
