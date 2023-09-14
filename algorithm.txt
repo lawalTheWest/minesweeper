@@ -35,12 +35,3 @@ Minesweeper Game Algorithm:
 9. Game Over:
    - If the player reveals a mine cell, end the game (player loses).
    - If the player wins, display a victory message.
-
-
-Implementation Details:
-
-- This implementation of the game will be using the python3 programming language.
-- Utilizing functions / methods to encapsulate different parts of the algorithm (More modifications will be updated as required).
-- Organizing the codes into modules or classes for readability, portability and maintainability.
-- Implementing a graphical user interface (GUI) using a library like pygame or tkinter. (pygame is the first choice here, might change if necessary).
-- Customizing the game's appearance, features, and user interactions as needed.
