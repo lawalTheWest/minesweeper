@@ -69,15 +69,34 @@ class Board:
         # select randomly from our range
         # passing the number of mines
         pos_of_mine = random.sample(range(self.num_rows * self.num_cols), self.num_mines)
+        for pos in pos_of_mine:
+            row = pos // self.num_cols
+            col = pos % self.num_cols
+            seld.cells[row][col].is_mine = True
 
-    def reveal_cell(self):
+    def reveal_cell(self, row, col):
         # Reveals a cell and handles adjacent empty cells.
+        if 0 <= row < self.num_rows and 0 <= col < self.num_cols:
+            cell = self.cells[row][col]
+            if not cell_is_reveal and not cell_is_flagged:
+                cell.reveal()
+                if cell.is_mine:
+                    return False
+                    # To end the game if one steps on the mine
+                elif cell.adjacent_mines == 0:
+                    self.reveal_adjacent_cells(row, col)
+            return True # game on to continue
 
-    def flag_cell(self):
+    def flag_cell(self, row, col):
         # Flags or unflags a cell.
+        if self.num_rows > row >= 0 and self.num_cols > col >= 0:
+            cell = self.cells[row][col]
+            if not cell_is_revealed:
+                cell.toggle_flag
 
     def is_game_over(self):
         # Checks if the game is over (win or loss).
+        pass
 
 class Game:
     def __init__(self, board, game_over, win):
