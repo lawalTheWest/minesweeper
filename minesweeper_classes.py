@@ -98,6 +98,21 @@ class Board:
             if not cell_is_revealed:
                 cell.toggle_flag
 
+    def display_board(self):
+        for row in range(self.num_rows):
+            for col in range(self.num_cols):
+                cell = self.cells[row][col]
+                if cell.is_revealed:
+                    if cell.is_mine:
+                        print("X", end=" ")  # Display mines as "X"
+                    else:
+                        print(cell.adjacent_mines, end=" ")
+                elif cell.is_flagged:
+                    print("F", end=" ")  # Display flagged cells as "F"
+                else:
+                    print(".", end=" ")  # Display unrevealed cells as "."
+            print()  # Move to the next row
+
     def is_game_over(self):
         # Checks if the game is over (win or loss).
         pass
@@ -130,7 +145,7 @@ class Game:
         '''
         self.board.initialize_board()
 
-    def play(self, row, col):
+    def play(self):
         '''
             Handles player moves,
             updates the board, and
@@ -138,7 +153,9 @@ class Game:
             this includes the,
             placing flags and the steps.
         '''
-        if not self.game_over:
+        while not self.game_over:
+            self.board.display_board()
+            row, col = UserInterface.get_user_input(self.board)
             result = self.board.reveal_cell(row, col)
             if not result:
                 self.game_over = True
@@ -162,6 +179,20 @@ class Game:
 
 class UserInterface:
     # This class handles user input and display.
+    @staticmethod
+    def get_user_input(board):
+        while True:
+            try:
+                row = int(input("Enter the row (0 to {}): ".format(board.num_rows - 1)))
+                col = int(input("Enter the column (0 to {}): ".format(board.num_cols - 1)))
+                if 0 <= row < board.num_rows and 0 <= col < board.num_cols:
+                    return row, col
+                else:
+                    print("Invalid row or column. Please enter values within the valid range.")
+            except ValueError:
+                print("Invalid input. Please enter valid integer values for row and column.")
+
+    '''
     def get_user_input():
         # Gets user input for cell selection or action.
         try:
@@ -171,7 +202,7 @@ class UserInterface:
         except ValueError:
             print("Invalid input. Please enter valid row and column numbers.")
             return UserInterface.get_user_input()
-
+    '''
     def display_board():
         '''
             Displays the current state of the board
