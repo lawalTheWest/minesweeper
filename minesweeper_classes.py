@@ -53,7 +53,7 @@ class Board:
         '''
 
 
-        self.cells = [[cells() for _ in range(num_cols)] for _ in range(num_rows)]
+        self.Cell = [[Cell() for _ in range(num_cols)] for _ in range(num_rows)]
         # A 2D list of Cell objects representing the game grid.
 
     def initialize_board(self):
@@ -113,18 +113,20 @@ class Game:
                 revealed cells.
         '''
 
-        self.game_over = game_over
+        self.game_over = False
         # Indicates whether the game is over.
         
-        self.win = win
+        self.win = False
         # Indicates whether the player has won.
 
-    def start_game():
+    def start_game(self):
         '''
             Initializes the game by
             creating the board and placing mines.
         '''
-    def play():
+        self.board.initialize_board()
+
+    def play(self, row, col):
         '''
             Handles player moves,
             updates the board, and
@@ -132,31 +134,60 @@ class Game:
             this includes the,
             placing flags and the steps.
         '''
-    def check_win():
+        if not self.game_over:
+            result = self.board.reveal_cell(row, col)
+            if not result:
+                self.game_over = True
+            else:
+                self.check_win()
+
+    def check_win(self):
         '''
             Checks if the player has won by
             revealing all non-mine cells.
         '''
-    def end_game():
+        pass
+
+    def end_game(self):
         '''
             Ends the game by 
             revealing all cells and
             displaying the result.
         '''
+        pass
+
 class UserInterface:
     # This class handles user input and display.
     def get_user_input():
         # Gets user input for cell selection or action.
+        pass
+
     def display_board():
         '''
             Displays the current state of the board
             to the player.
         '''
+        pass
 
-class main:
+if __name__ == '__main__':
     '''
         Game Entry point.
         Purpose:
             Initializes the necessary game objects and
             starts the game loop.
     '''
+    num_rows = 10
+    num_cols = 10
+    num_mines = 10
+
+    board = Board(num_rows, num_cols, num_mines)
+    game = Game(board)
+
+    game.start_game()
+
+    while not game.game_over:
+        UserInterface.display_board()
+        roe, col = UserInteface.get_user_input()
+        game.play(row, col)
+
+    game.end_game()
