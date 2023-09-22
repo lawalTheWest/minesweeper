@@ -78,6 +78,19 @@ class Board:
         # Calculates and sets the number of adjacent mines.
         pass 
 
+    def reveal_adjacent_cells(self, row, col):
+        for dr in [-1, 0, 1]:
+            for dc in [-1, 0, 1]:
+                if dr == 0 and dc == 0:
+                    continue  # Skip the current cell
+                r, c = row + dr, col + dc
+                if 0 <= r < self.num_rows and 0 <= c < self.num_cols:
+                    adjacent_cell = self.cells[r][c]
+                    if not adjacent_cell.is_revealed and not adjacent_cell.is_flagged:
+                        adjacent_cell.reveal()
+                        if adjacent_cell.adjacent_mines == 0:
+                            self.reveal_adjacent_cells(r, c)
+
     def reveal_cell(self, row, col):
         # Reveals a cell and handles adjacent empty cells.
         if 0 <= row < self.num_rows and 0 <= col < self.num_cols:
@@ -217,9 +230,9 @@ if __name__ == '__main__':
             Initializes the necessary game objects and
             starts the game loop.
     '''
-    num_rows = 10
-    num_cols = 10
-    num_mines = 10
+    num_rows = 3
+    num_cols = 3
+    num_mines = 3
 
     board = Board(num_rows, num_cols, num_mines)
     game = Game(board)
