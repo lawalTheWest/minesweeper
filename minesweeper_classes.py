@@ -53,7 +53,7 @@ class Board:
         '''
 
 
-        self.Cell = [[Cell() for _ in range(num_cols)] for _ in range(num_rows)]
+        self.cells = [[Cell() for _ in range(num_cols)] for _ in range(num_rows)]
         # A 2D list of Cell objects representing the game grid.
 
     def initialize_board(self):
@@ -72,13 +72,17 @@ class Board:
         for pos in pos_of_mine:
             row = pos // self.num_cols
             col = pos % self.num_cols
-            seld.cells[row][col].is_mine = True
+            self.cells[row][col].is_mine = True
+
+    def set_adjacent_mines(self, row, col):
+        # Calculates and sets the number of adjacent mines.
+        pass 
 
     def reveal_cell(self, row, col):
         # Reveals a cell and handles adjacent empty cells.
         if 0 <= row < self.num_rows and 0 <= col < self.num_cols:
             cell = self.cells[row][col]
-            if not cell_is_reveal and not cell_is_flagged:
+            if not cell.is_revealed and not cell.is_flagged:
                 cell.reveal()
                 if cell.is_mine:
                     return False
@@ -99,7 +103,7 @@ class Board:
         pass
 
 class Game:
-    def __init__(self, board, game_over, win):
+    def __init__(self, board):
         self.board = board
         '''
             Purpose:
@@ -160,7 +164,13 @@ class UserInterface:
     # This class handles user input and display.
     def get_user_input():
         # Gets user input for cell selection or action.
-        pass
+        try:
+            row = int(input("Enter the row: "))
+            col = int(input("Enter the column: "))
+            return row, col
+        except ValueError:
+            print("Invalid input. Please enter valid row and column numbers.")
+            return UserInterface.get_user_input()
 
     def display_board():
         '''
@@ -184,10 +194,11 @@ if __name__ == '__main__':
     game = Game(board)
 
     game.start_game()
-
+    '''
     while not game.game_over:
         UserInterface.display_board()
-        roe, col = UserInteface.get_user_input()
+        row, col = UserInterface.get_user_input()
         game.play(row, col)
-
+    '''
+    game.play()
     game.end_game()
