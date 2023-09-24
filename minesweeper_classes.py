@@ -53,7 +53,7 @@ class Board:
         '''
 
 
-        self.cells = [[cells() for _ in range(num_cols)] for _ in range(num_rows)]
+        self.cells = [[Cell() for _ in range(num_cols)] for _ in range(num_rows)]
         # A 2D list of Cell objects representing the game grid.
 
     def initialize_board(self):
@@ -69,18 +69,69 @@ class Board:
         # select randomly from our range
         # passing the number of mines
         pos_of_mine = random.sample(range(self.num_rows * self.num_cols), self.num_mines)
+        for pos in pos_of_mine:
+            row = pos // self.num_cols
+            col = pos % self.num_cols
+            self.cells[row][col].is_mine = True
 
-    def reveal_cell(self):
+    def set_adjacent_mines(self, row, col):
+        # Calculates and sets the number of adjacent mines.
+        pass 
+
+    def reveal_adjacent_cells(self, row, col):
+        for dr in [-1, 0, 1]:
+            for dc in [-1, 0, 1]:
+                if dr == 0 and dc == 0:
+                    continue  # Skip the current cell
+                r, c = row + dr, col + dc
+                if 0 <= r < self.num_rows and 0 <= c < self.num_cols:
+                    adjacent_cell = self.cells[r][c]
+                    if not adjacent_cell.is_revealed and not adjacent_cell.is_flagged:
+                        adjacent_cell.reveal()
+                        if adjacent_cell.adjacent_mines == 0:
+                            self.reveal_adjacent_cells(r, c)
+
+    def reveal_cell(self, row, col):
         # Reveals a cell and handles adjacent empty cells.
+        if 0 <= row < self.num_rows and 0 <= col < self.num_cols:
+            cell = self.cells[row][col]
+            if not cell.is_revealed and not cell.is_flagged:
+                cell.reveal()
+                if cell.is_mine:
+                    return False
+                    # To end the game if one steps on the mine
+                elif cell.adjacent_mines == 0:
+                    self.reveal_adjacent_cells(row, col)
+            return True # game on to continue
 
-    def flag_cell(self):
+    def flag_cell(self, row, col):
         # Flags or unflags a cell.
+        if self.num_rows > row >= 0 and self.num_cols > col >= 0:
+            cell = self.cells[row][col]
+            if not cell_is_revealed:
+                cell.toggle_flag
+
+    def display_board(self):
+        for row in range(self.num_rows):
+            for col in range(self.num_cols):
+                cell = self.cells[row][col]
+                if cell.is_revealed:
+                    if cell.is_mine:
+                        print("X", end=" ")  # Display mines as "X"
+                    else:
+                        print(cell.adjacent_mines, end=" ")
+                elif cell.is_flagged:
+                    print("F", end=" ")  # Display flagged cells as "F"
+                else:
+                    print(".", end=" ")  # Display unrevealed cells as "."
+            print()  # Move to the next row
 
     def is_game_over(self):
         # Checks if the game is over (win or loss).
+        pass
 
 class Game:
-    def __init__(self, board, game_over, win):
+    def __init__(self, board):
         self.board = board
         '''
             Purpose:
@@ -94,18 +145,20 @@ class Game:
                 revealed cells.
         '''
 
-        self.game_over = game_over
+        self.game_over = False
         # Indicates whether the game is over.
         
-        self.win = win
+        self.win = False
         # Indicates whether the player has won.
 
-    def start_game():
+    def start_game(self):
         '''
             Initializes the game by
             creating the board and placing mines.
         '''
-    def play():
+        self.board.initialize_board()
+
+    def play(self):
         '''
             Handles player moves,
             updates the board, and
@@ -113,31 +166,83 @@ class Game:
             this includes the,
             placing flags and the steps.
         '''
-    def check_win():
+        while not self.game_over:
+            self.board.display_board()
+            row, col = UserInterface.get_user_input(self.board)
+            result = self.board.reveal_cell(row, col)
+            if not result:
+                self.game_over = True
+            else:
+                self.check_win()
+
+    def check_win(self):
         '''
             Checks if the player has won by
             revealing all non-mine cells.
         '''
-    def end_game():
+        pass
+
+    def end_game(self):
         '''
             Ends the game by 
             revealing all cells and
             displaying the result.
         '''
+        pass
+
 class UserInterface:
     # This class handles user input and display.
+    @staticmethod
+    def get_user_input(board):
+        while True:
+            try:
+                row = int(input("Enter the row (0 to {}): ".format(board.num_rows - 1)))
+                col = int(input("Enter the column (0 to {}): ".format(board.num_cols - 1)))
+                if 0 <= row < board.num_rows and 0 <= col < board.num_cols:
+                    return row, col
+                else:
+                    print("Invalid row or column. Please enter values within the valid range.")
+            except ValueError:
+                print("Invalid input. Please enter valid integer values for row and column.")
+
+    '''
     def get_user_input():
         # Gets user input for cell selection or action.
+        try:
+            row = int(input("Enter the row: "))
+            col = int(input("Enter the column: "))
+            return row, col
+        except ValueError:
+            print("Invalid input. Please enter valid row and column numbers.")
+            return UserInterface.get_user_input()
+    '''
     def display_board():
         '''
             Displays the current state of the board
             to the player.
         '''
+        pass
 
-class main:
+if __name__ == '__main__':
     '''
         Game Entry point.
         Purpose:
             Initializes the necessary game objects and
             starts the game loop.
     '''
+    num_rows = 3
+    num_cols = 3
+    num_mines = 3
+
+    board = Board(num_rows, num_cols, num_mines)
+    game = Game(board)
+
+    game.start_game()
+    '''
+    while not game.game_over:
+        UserInterface.display_board()
+        row, col = UserInterface.get_user_input()
+        game.play(row, col)
+    '''
+    game.play()
+    game.end_game()
