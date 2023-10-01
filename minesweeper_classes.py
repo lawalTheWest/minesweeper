@@ -3,7 +3,7 @@
     The Minesweeper functionalities
 '''
 import random
-
+import pygame
 
 class Cell:
     def __init__(self):
@@ -216,12 +216,28 @@ class UserInterface:
             print("Invalid input. Please enter valid row and column numbers.")
             return UserInterface.get_user_input()
     '''
+
+    '''
     def display_board():
-        '''
+        ''
             Displays the current state of the board
             to the player.
-        '''
-        pass
+    '''
+    @staticmethod
+    def display_board(board):
+        for row in range(board.num_rows):
+            for col in range(board.num_cols):
+                cell = board.cells[row][col]
+                if cell.is_revealed:
+                    if cell.is_mine:
+                        print("X", end=" ")  # Display mines as "X"
+                    else:
+                        print(cell.adjacent_mines, end=" ")
+                elif cell.is_flagged:
+                    print("F", end=" ")  # Display flagged cells as "F"
+                else:
+                    print(".", end=" ")  # Display unrevealed cells as "."
+            print()  # Move to the next row
 
 if __name__ == '__main__':
     '''
@@ -230,19 +246,38 @@ if __name__ == '__main__':
             Initializes the necessary game objects and
             starts the game loop.
     '''
-    num_rows = 3
-    num_cols = 3
+    num_rows = 5
+    num_cols = 5
     num_mines = 3
 
     board = Board(num_rows, num_cols, num_mines)
     game = Game(board)
 
     game.start_game()
-    '''
+    
     while not game.game_over:
-        UserInterface.display_board()
-        row, col = UserInterface.get_user_input()
-        game.play(row, col)
+        UserInterface.display_board(board)
+        row, col = UserInterface.get_user_input(board)
+        game.play()
     '''
     game.play()
+    '''
     game.end_game()
+
+    #Initialize Pygame
+    pygame.init()
+
+    # Set up the window
+    screen_width = 400
+    screen_height = 400
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Minesweeper")
+
+    # Game loop
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+    pygame.quit()
