@@ -1,7 +1,9 @@
 # Minesweeper Game
 
+
 ![Minesweeper]()
 
+---
 ## The Overview
 
 This is a simple implementation of the classic Minesweeper game using Python and the `pygame` library.
@@ -9,6 +11,7 @@ The game is played on a grid where the player must avoid hidden mines while unco
 
 Interesting; isn't it!
 
+---
 ## General Features
 
 - Interactive graphical user interface.
