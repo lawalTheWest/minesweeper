@@ -20,13 +20,13 @@ Interesting; isn't it!
 - `Win` the game by successfully uncovering `all non-mine cells`.
 - `Lose` the game `if you reveal a mine cell.`
 
-
+---
 ## General Prerequisites To this program
 
 - `Python3` is used in this (let me say python 3.x). ~ Smiles
 - `pygame` library (install using `pip install pygame`) ~ necessary installations.
 
-
+---
 ## How to Play (This section will be updated as the program get to completion)
 
 The basics as research projects:::
@@ -36,14 +36,14 @@ The basics as research projects:::
 3. Install the required `pygame` library by running `pip install pygame`.
 4. Run the game by executing the `minesweeper.py` file.
 
-
+---
 ## Controls (Any update will be made if any but these will be the basic keys)
 
 - Left-click: Reveal a cell.
 - Right-click: Flag or unflag a cell as a potential mine.
 
 
-
+---
 ## General Concepts (python3 - Updates will be made as they are implemented)
 
 To implement the Minesweeper game in Python3.
@@ -122,19 +122,19 @@ Taking it step by step and refering to documentation, and with the help of discu
 
 #learning through hands-on experience.
 
-
+---
 ## License
 
 This project is licensed under the [MIT License](LICENSE)
 
-
+---
 ## Acknowledgements
 
 - This project was inspired by the classic Minesweeper game.
 - The implementation is based on my understanding of game logic and the `pygame` library.
 - Any improvements to this program from anyone will be appreciated.
 
-
+---
 ## Future Enhancements
 
 - Implementing a timer to track the time taken to complete the game.
